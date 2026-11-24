@@ -1,0 +1,14 @@
+version: "3.9"
+
+services:
+  api:
+    build: .
+    ports:
+      - "5000:5000"
+    environment:
+      - MODEL_DIR=/app/models/weights
+      - LOG_LEVEL=INFO
+    volumes:
+      # mount local weights so you can swap models without rebuild
+      - ./models/weights:/app/models/weights
+    restart: unless-stopped
